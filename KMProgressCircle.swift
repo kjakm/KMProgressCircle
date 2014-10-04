@@ -7,16 +7,61 @@
 //
 
 import UIKit
+import QuartzCore
 
+@IBDesignable
 class KMProgressCircle: UIView {
 
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect)
-    {
-        // Drawing code
+    var backgroundLayer: CAShapeLayer!
+    var foregroundLayer: CAShapeLayer!
+    
+    var lineWidth: CGFloat = 10.0
+    
+    @IBInspectable var progress :CGFloat = 0.6
+    @IBInspectable var bgColor :UIColor = UIColor.grayColor()
+    @IBInspectable var fgColor :UIColor = UIColor.blueColor()
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if !(backgroundLayer != nil) {
+            backgroundLayer = CAShapeLayer()
+            layer.addSublayer(backgroundLayer)
+         
+            let rect = CGRectInset(bounds, lineWidth / 2.0, lineWidth / 2.0)
+            let path = UIBezierPath(ovalInRect: rect)
+            
+            backgroundLayer.path = path.CGPath
+            backgroundLayer.fillColor = nil
+            backgroundLayer.lineWidth = lineWidth
+            backgroundLayer.strokeColor = bgColor.CGColor
+        }
+        
+        backgroundLayer.frame = layer.bounds
+        
+        if !(foregroundLayer != nil) {
+            foregroundLayer = CAShapeLayer()
+            layer.addSublayer(foregroundLayer)
+            
+            let rect = CGRectInset(bounds, lineWidth / 2.0, lineWidth / 2.0)
+            let path = UIBezierPath(ovalInRect: rect)
+            
+            foregroundLayer.path = path.CGPath
+            foregroundLayer.fillColor = nil
+            foregroundLayer.lineWidth = lineWidth
+            foregroundLayer.strokeColor = fgColor.CGColor
+            foregroundLayer.anchorPoint = CGPointMake(0.5, 0.5)
+            foregroundLayer.transform = CATransform3DRotate(foregroundLayer.transform, CGFloat(-M_PI)/2, 0, 0, 1)
+        }
+        
+        foregroundLayer.frame = layer.bounds
+        
+        updateLayerProperties()
     }
-    */
-
+    
+    func updateLayerProperties() {
+        if (foregroundLayer != nil) {
+            foregroundLayer.strokeEnd = progress
+        }
+    }
 }
