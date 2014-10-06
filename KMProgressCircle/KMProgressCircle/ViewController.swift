@@ -14,7 +14,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // We can  set the background and foreground colors
+        progressCircle.bgColor = UIColor.blackColor();
+        progressCircle.fgColor = UIColor.redColor();
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,8 +25,11 @@ class ViewController: UIViewController {
     }
 
     @IBAction func progressSliderMoved(sender :AnyObject) {
+        // Cast sender to UISlider so we can access its properties
         var slider = sender as UISlider
+        // Set the progressCircle's progress to the sliders value
         progressCircle.progress = CGFloat(slider.value)
+        // Finally we make a call to update the stroke
         progressCircle.updateLayerProperties()
     }
 }
