@@ -24,6 +24,7 @@ class KMProgressCircle: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        // Create the background layer
         if !(backgroundLayer != nil) {
             backgroundLayer = CAShapeLayer()
             layer.addSublayer(backgroundLayer)
@@ -39,6 +40,7 @@ class KMProgressCircle: UIView {
         
         backgroundLayer.frame = layer.bounds
         
+        // Create the foreground layer. This is the layer that displays the progress.
         if !(foregroundLayer != nil) {
             foregroundLayer = CAShapeLayer()
             layer.addSublayer(foregroundLayer)
@@ -56,9 +58,11 @@ class KMProgressCircle: UIView {
         
         foregroundLayer.frame = layer.bounds
         
+        // Update the stroke
         updateLayerProperties()
     }
-    
+   
+    // Update the stroke of the foreground layer to match the progress value
     func updateLayerProperties() {
         if (foregroundLayer != nil) {
             foregroundLayer.strokeEnd = progress
