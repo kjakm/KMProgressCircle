@@ -18,8 +18,8 @@ class KMProgressCircle: UIView {
     var lineWidth: CGFloat = 10.0
     
     @IBInspectable var progress :CGFloat = 0.6
-    @IBInspectable var bgColor :UIColor = UIColor.grayColor()
-    @IBInspectable var fgColor :UIColor = UIColor.blueColor()
+    @IBInspectable var bgColor :UIColor = UIColor.gray
+    @IBInspectable var fgColor :UIColor = UIColor.blue
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -29,13 +29,13 @@ class KMProgressCircle: UIView {
             backgroundLayer = CAShapeLayer()
             layer.addSublayer(backgroundLayer)
          
-            let rect = CGRectInset(bounds, lineWidth / 2.0, lineWidth / 2.0)
-            let path = UIBezierPath(ovalInRect: rect)
+            let rect = bounds.insetBy(dx: lineWidth / 2.0, dy: lineWidth / 2.0)
+            let path = UIBezierPath(ovalIn: rect)
             
-            backgroundLayer.path = path.CGPath
+            backgroundLayer.path = path.cgPath
             backgroundLayer.fillColor = nil
             backgroundLayer.lineWidth = lineWidth
-            backgroundLayer.strokeColor = bgColor.CGColor
+            backgroundLayer.strokeColor = bgColor.cgColor
         }
         
         backgroundLayer.frame = layer.bounds
@@ -45,14 +45,14 @@ class KMProgressCircle: UIView {
             foregroundLayer = CAShapeLayer()
             layer.addSublayer(foregroundLayer)
             
-            let rect = CGRectInset(bounds, lineWidth / 2.0, lineWidth / 2.0)
-            let path = UIBezierPath(ovalInRect: rect)
+            let rect = bounds.insetBy(dx: lineWidth / 2.0, dy: lineWidth / 2.0)
+            let path = UIBezierPath(ovalIn: rect)
             
-            foregroundLayer.path = path.CGPath
+            foregroundLayer.path = path.cgPath
             foregroundLayer.fillColor = nil
             foregroundLayer.lineWidth = lineWidth
-            foregroundLayer.strokeColor = fgColor.CGColor
-            foregroundLayer.anchorPoint = CGPointMake(0.5, 0.5)
+            foregroundLayer.strokeColor = fgColor.cgColor
+            foregroundLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             foregroundLayer.transform = CATransform3DRotate(foregroundLayer.transform, CGFloat(-M_PI)/2, 0, 0, 1)
         }
         
