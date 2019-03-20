@@ -53,7 +53,7 @@ class KMProgressCircle: UIView {
             foregroundLayer.lineWidth = lineWidth
             foregroundLayer.strokeColor = fgColor.cgColor
             foregroundLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-            foregroundLayer.transform = CATransform3DRotate(foregroundLayer.transform, CGFloat(-M_PI)/2, 0, 0, 1)
+            foregroundLayer.transform = CATransform3DRotate(foregroundLayer.transform, CGFloat(-Double.pi)/2, 0, 0, 1)
         }
         
         foregroundLayer.frame = layer.bounds
